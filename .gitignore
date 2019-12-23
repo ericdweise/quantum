@@ -27,4 +27,4 @@
 *.bmp
 
 #Repository specific files
-quantum-env/*
+qiskit/qiskit-env/*
