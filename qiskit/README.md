@@ -158,7 +158,7 @@ cricuit.rcccx()
 ## Tensor Products (Composite Gates)
 Viewing matrix representations of sequential gates:
 ```python
-from 
+from qiskit import Aer
 unitary_simulator = Aer.get_backend('unitary_simulator')
 circuit = QuantumCircuit()
 ## Perform gate operations
