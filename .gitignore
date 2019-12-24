@@ -28,3 +28,4 @@
 
 #Repository specific files
 qiskit/qiskit-env/*
+*/.ipynb_checkpoints/*
