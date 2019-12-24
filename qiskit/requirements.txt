@@ -6,6 +6,7 @@ cffi==1.13.2
 chardet==3.0.4
 cryptography==2.8
 cvxopt==1.2.3
+cycler==0.10.0
 decorator==4.4.1
 defusedxml==0.6.0
 dill==0.3.1.1
@@ -30,9 +31,11 @@ jupyter-client==5.3.4
 jupyter-core==4.6.1
 jupyterlab==1.2.4
 jupyterlab-server==1.0.6
+kiwisolver==1.1.0
 MarkupSafe==1.1.1
 marshmallow==3.3.0
 marshmallow-polyfield==5.7
+matplotlib==3.1.2
 mistune==0.8.4
 more-itertools==5.0.0
 mpmath==1.1.0
@@ -58,6 +61,7 @@ pyasn1==0.4.8
 pycparser==2.19
 Pygments==2.5.2
 pyOpenSSL==19.1.0
+pyparsing==2.4.5
 pyrsistent==0.15.6
 pyscf==1.6.5
 python-dateutil==2.8.1

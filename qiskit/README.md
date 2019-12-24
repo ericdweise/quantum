@@ -29,7 +29,7 @@ pip3 install -r requirements.txt
 
 ### 2. Directly install required packages
 ```bash
-pip3 install jupyterlab qiskit
+pip3 install jupyterlab qiskit matplotlib
 ```
 
 ## Starting Virtual Environment
