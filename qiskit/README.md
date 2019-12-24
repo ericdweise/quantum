@@ -1,8 +1,8 @@
 This directory contains all my projects for 
 
 # Links
-[Project Q Login](https://quantum-computing.ibm.com/)
-[IBM Quantum Computing ](https://www.ibm.com/quantum-computing/)
+1. [Project Q Login](https://quantum-computing.ibm.com/)
+2. [IBM Quantum Computing ](https://www.ibm.com/quantum-computing/)
 
 
 # Installing Packages
@@ -18,7 +18,7 @@ pip3 install virtualenv
 ```bash
 virtualenv qiskit-env
 ```
-I don't upload y virtual environment because there is a lot of redundant
+I don't upload my virtual environment because there is a lot of redundant
 information in it that can be quickly and easily installed on any computer.
 There are two ways to install packages:
 
@@ -44,8 +44,7 @@ deactivate
 
 
 # Circuits
-
-Create Quantum Circuit
+## Initialize Quantum Circuit
 ```python
 From qiskit import *
 qr = QuantumRegister(2)
@@ -53,18 +52,19 @@ cr = Classical Register(2)
 circuit = QuantumCircuit(qr, cr)
 ```
 
-Plotting Circuit States
+## Plotting Circuit States
 ```python
 matplotlib inline
 circuit.draw
 ```
 
 
-## Clifford Group
+# Gates
 For more information reread
 [this chapter](https://qiskit.org/textbook/ch-gates/quantum-gates.html)
-on quantum gates. From: qiskit.org.
+on quantum gates. From: *qiskit.org*.
 
+## Clifford Group
 ### Hadamard
 A half rotation of the Bloch sphere around the axis half way between
 the x-axis and z-axis. 
