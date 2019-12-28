@@ -9,36 +9,36 @@ statevector_simulator = Aer.get_backend('statevector_simulator')
 
 
 def complex_pretty(c):
-    if c.imag == 0 and c.real == 0:
+    if (abs(round(c.imag) - 0) < 0.01) and (abs(round(c.real) - 0) < 0.01):
         return '0'
 
     elif c.imag == 0:
-        if c.real == floor(c.real):
-            return str(int(c.real))
+        if abs(c.real -floor(c.real)) < 0.01:
+            return f'{int(round(c.real))}'
         else:
             return f'{c.real:.2f}'
 
     elif c.real == 0:
-        if c.imag == floor(c.imag):
-            return f'{int(c.imag)}j'
+        if abs(c.imag - floor(c.imag)) < 0.01:
+            return f'{int(round(c.imag))}j'
         else:
             return f'{c.imag:.2f}j'
 
-    if c.real == floor(c.real):
-        rp = f'{int(c.real)}'
+    if abs(c.real - floor(c.real)) < 0.01:
+        rp = f'{int(round(c.real))}'
     else:
         rp = f'{c.real:.2f}'
 
     if c.imag > 0:
         op = ' + '
-        if c.imag == floor(c.imag):
-            ip = f'{int(c.imag)}'
+        if abs(c.imag - floor(c.imag)) < 0.01:
+            ip = f'{int(round(c.imag))}'
         else:
             ip = f'{c.imag:.2f}'
 
     else:
         op = ' - '
-        if c.imag == floor(c.imag):
+        if abs(c.imag - floor(c.imag)) < 0.01:
             ip = f'{-int(c.imag)}'
         else:
             ip = f'{-c.imag:.2f}'

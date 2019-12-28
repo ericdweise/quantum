@@ -47,6 +47,19 @@ class ComplexPrettyStrig(unittest.TestCase):
         n = complex(-0.5, -sqrt(3)/2)
         self.assertEqual(complex_pretty(n), '-0.50 - 0.87j')
 
+    def test_real_near_zero(self):
+        n = complex(0.0000000001, 0)
+        self.assertEqual(complex_pretty(n), '0')
+
+    def test_imag_near_zero(self):
+        n = complex(0, -0.00001)
+        self.assertEqual(complex_pretty(n), '0')
+
+    def test_complex_near_zero(self):
+        n = complex(-0.000001, 0.0000001)
+        self.assertEqual(complex_pretty(n), '0')
+
+
 
 if __name__ == '__main__':
     unittest.main()
