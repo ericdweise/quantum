@@ -47,16 +47,26 @@ class ComplexPrettyStrig(unittest.TestCase):
         n = complex(-0.5, -sqrt(3)/2)
         self.assertEqual(complex_pretty(n), '-0.50 - 0.87j')
 
-    def test_real_near_zero(self):
+    def test_real_rounding(self):
         n = complex(0.0000000001, 0)
         self.assertEqual(complex_pretty(n), '0')
+        n = complex(0.000000001, 4)
+        self.assertEqual(complex_pretty(n), '4j')
+        n = complex(0.0000001, 0.75)
+        self.assertEqual(complex_pretty(n), '0.75j')
 
-    def test_imag_near_zero(self):
+    def test_imag_rounding(self):
         n = complex(0, -0.00001)
         self.assertEqual(complex_pretty(n), '0')
+        n = complex(-3, -0.00001)
+        self.assertEqual(complex_pretty(n), '-3')
+        n = complex(0.25, -0.00001)
+        self.assertEqual(complex_pretty(n), '0.25')
 
-    def test_complex_near_zero(self):
+    def test_complex_rounding(self):
         n = complex(-0.000001, 0.0000001)
+        self.assertEqual(complex_pretty(n), '0')
+        n = complex(0.000001, -0.0000001)
         self.assertEqual(complex_pretty(n), '0')
 
 

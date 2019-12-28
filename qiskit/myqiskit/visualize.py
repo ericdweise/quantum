@@ -1,5 +1,3 @@
-from math import floor
-
 from qiskit import *
 from IPython.display import display, Markdown, Latex
 
@@ -9,36 +7,36 @@ statevector_simulator = Aer.get_backend('statevector_simulator')
 
 
 def complex_pretty(c):
-    if (abs(round(c.imag) - 0) < 0.01) and (abs(round(c.real) - 0) < 0.01):
+    if (abs(c.imag - 0) < 0.01) and (abs(c.real - 0) < 0.01):
         return '0'
 
-    elif c.imag == 0:
-        if abs(c.real -floor(c.real)) < 0.01:
+    elif abs(c.imag - 0) < 0.01:
+        if abs(c.real - round(c.real)) < 0.01:
             return f'{int(round(c.real))}'
         else:
             return f'{c.real:.2f}'
 
-    elif c.real == 0:
-        if abs(c.imag - floor(c.imag)) < 0.01:
+    elif abs(c.real - 0) < 0.01:
+        if abs(c.imag - round(c.imag)) < 0.01:
             return f'{int(round(c.imag))}j'
         else:
             return f'{c.imag:.2f}j'
 
-    if abs(c.real - floor(c.real)) < 0.01:
+    if abs(c.real - round(c.real)) < 0.01:
         rp = f'{int(round(c.real))}'
     else:
         rp = f'{c.real:.2f}'
 
     if c.imag > 0:
         op = ' + '
-        if abs(c.imag - floor(c.imag)) < 0.01:
+        if abs(c.imag - round(c.imag)) < 0.01:
             ip = f'{int(round(c.imag))}'
         else:
             ip = f'{c.imag:.2f}'
 
     else:
         op = ' - '
-        if abs(c.imag - floor(c.imag)) < 0.01:
+        if abs(c.imag - round(c.imag)) < 0.01:
             ip = f'{-int(c.imag)}'
         else:
             ip = f'{-c.imag:.2f}'
