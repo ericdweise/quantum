@@ -46,10 +46,13 @@ def complex_pretty(c):
     return(rp + op + ip + 'j')
 
 
-def matrix_pretty(circuit):
+def get_unitary(circuit):
     job = execute(circuit, unitary_simulator)
     result = job.result()
-    gate = result.get_unitary()
+    return result.get_unitary()
+
+def matrix_pretty(circuit):
+    gate = get_unitary(circuit)
     gate_latex = '\\begin{pmatrix}'
     for line in gate:
         for element in line:
@@ -65,3 +68,14 @@ def statevector(circuit):
     job = execute(circuit, statevector_simulator)
     result = job.result()
     return result.get_statevector()
+
+
+def statevector_pretty(circuit):
+    svector = statevector(circuit)
+    latex = '\\begin{pmatrix}'
+    for element in svector:
+        latex += complex_pretty(element)
+        latex +=  '\\\\'
+    latex  = latex[0:-2]
+    latex += '\end{pmatrix}'
+    display(Markdown(latex))
