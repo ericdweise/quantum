@@ -3,9 +3,10 @@ This directory contains all my projects for
 # Links
 1. [Project Q Login](https://quantum-computing.ibm.com/)
 2. [IBM Quantum Computing ](https://www.ibm.com/quantum-computing/)
+3. [QISkit Textbook](https://delapuente.github.io/qiskit-textbook/preface)
 
 
-# Installing Packages
+# Environment
 Written for Debian/Ubuntu
 
 ## Ubuntu/Debian packages
