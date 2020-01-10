@@ -18,12 +18,56 @@
             \hfill A09642187
             }
     \end{tabular}
+\vspace{12pt}
 \newline
 }
 
 \begin{document}
 
 \assignment{1}
-\section*{Problem 1}
+For a non-relativistic free particle \( L = \frac{m\dot{x}}{2} \)
+\subsection*{Part 1}
+Show that the stationary (classical) action $S[x]$ corresponding to the
+classical motion of a free particle travelling from $(x_0,t_0)$ to
+$(x_1,t_1)$ is \( S[x]= \frac{m(x_1-x_0)^2}{2(t_1-t_0)}\)
+
+\begin{align*}
+    S[x]
+    &= \int_{t_0}^{t_1} \frac{m}{2}\dot{x}^2 dt \\
+    &= \frac{m}{2} \int_{t_0}^{t_1} v(t) v(t) dt \\
+    &= \frac{m}{2} \Big[ \big[ v(t) x(t) \big]_{t_0}^{t_1} - \int_{t_0}^{t_1} x(t) dv(t) \Big]
+        && \text{Using itegration by parts.} \\
+    &= \frac{m}{2} \Big[ \big[ v(t) x(t) \big]_{t_0}^{t_1} - \int_{t_0}^{t_1} x(t) \ddot{x}(t) dt \\
+    &= \frac{m}{2} \big[ v(t) x(t) \big]_{t_0}^{t_1}
+        && \text{since $\ddot{x}=0$ (Free particle)} \\
+    &= \frac{m}{2} \big[ v(t_1) x(t_1) - v(t_0) x(t_0) \big] \\
+    &= \frac{m}{2} \big[ \frac{x_1 - x_0}{t_1 - t_0} x(t_1) - \frac{x_1 - x_0}{t_1 - t_0} x(t_0) \big] \\
+    &= \frac{m}{2} \frac{(x_1 - x_0)^2}{t_1 - t_0}
+\end{align*}
+
+\subsection*{Part 2}
+Show that the spatial derivative of the action \( \partial_{x_1} S[x] \) is the momentum of the particle.
+
+\begin{align*}
+    \partial_{x1} S[x]
+    &= \partial_{x_1} \frac{m}{2} \frac{(x_1 - x_0)^2}{t_1 - t_0} \\
+    &= \frac{m}{2} \frac{2(x_1 - x_0)(\partial_{x_1}(x_1 - x_0))}{t_1 - t_0}
+        && \text{By the chain rule} \\
+    &= \frac{m}{2} \frac{2(x_1 - x_0)}{t_1 - t_0} \\
+    &= m \frac{x_1 - x_0}{t_1 - t_0} \\
+    &= m \cdot v
+\end{align*}
+
+\subsection*{Part 3}
+Show that the (negative) temporal derivative of the action, \( -\partial_{t_1} S[x] \), is the energy of the particle.
+
+\begin{align*}
+    -\partial_{t_1} S[x]
+    &= -\partial_{t_1} \frac{m}{2} \frac{(x_1 - x_0)^2}{t_1 - t_0} \\
+    &= - \frac{m}{2} (x_1 - x_0)^2 \big[ \partial_{t_1} (t_1 - t_0)^{-1} \big] \\
+    &= - \frac{m}{2} (x_1 - x_0)^2 \big[ (-1) (t_1 - t_0)^{-2} \big] \\
+    &= \frac{m}{2} \big(\frac{x_1 - x_0}{t_1 - t_0}\big)^2 \\
+    &= \frac{m}{2} \ddot{x}^2
+\end{align*}
 
 \end{document}
