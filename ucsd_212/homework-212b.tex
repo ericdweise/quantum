@@ -6,6 +6,8 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{braket}
+\usepackage{nopageno}
 
 \newcommand{\assignment}[1]{
     \newpage
@@ -18,9 +20,13 @@
             \hfill A09642187
             }
     \end{tabular}
-\vspace{12pt}
-\newline
+    \vspace{12pt}
+    \newline
 }
+\newcommand{\D}[1]{{d#1 \,}}
+\newcommand{\Poperator}[0]{-i \hbar \partial_x}
+\renewcommand{\exp}[1]{\,\text{exp} \big\{ #1 \big\} }
+
 
 \begin{document}
 
@@ -69,5 +75,154 @@ Show that the (negative) temporal derivative of the action, \( -\partial_{t_1} S
     &= \frac{m}{2} \big(\frac{x_1 - x_0}{t_1 - t_0}\big)^2 \\
     &= \frac{m}{2} \ddot{x}^2
 \end{align*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% HW 2 %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\assignment{2}
+
+Consider state
+\( \ket{\psi} = \int \D{x} \, \psi(x) \ket{x} \)
+described by the following wave function with a tunable parameter $\sigma$:
+\[ \psi(x) = \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp\big( -\frac{x^2}{2\sigma^2} \big) \]
+
+\subsection*{Part 1}
+Check that the state is normalized.
+
+\begin{align*}
+    \braket{\psi|\psi}
+    & = \int_{-\infty}^{\infty} \D{x} \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp\Big( \frac{-x^2}{2\sigma^2} \Big)
+        \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp\Big( \frac{-x^2}{2\sigma^2} \Big) \\
+    & = \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{x} \exp\Big( \frac{-x^2}{\sigma^2} \Big) \\
+    \big| \braket{\psi|\psi} \big| ^2
+    & = \bigg( \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{x} \exp\Big( \frac{-x^2}{\sigma^2} \Big) \bigg)
+        \bigg( \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{y} \exp\Big( \frac{-y^2}{\sigma^2} \Big) \bigg) \\
+    & = \frac{1}{\pi\sigma^2} \iint_{-\infty}^{\infty} \D{x} \D{y} \exp\big( -\frac{x^2 + y^2}{\sigma^2} \big) \bigg) \\
+    & = \frac{1}{\pi\sigma^2} \int_{0}^{2\pi}\D{\theta} \int_{0}^{\infty} \D{r} r \exp\Big( \frac{-r^2}{\sigma^2} \Big)
+        & \text{Change of to polar coordinates}\\
+    & = \frac{2\pi}{\pi\sigma^2} \int_{0}^{\infty} \D{r} r \exp\Big( \frac{-r^2}{\sigma^2} \Big) \\
+    & = \int_{0}^{\infty} \D{r} \frac{2r}{\sigma^2} \exp\Big( \frac{-r^2}{\sigma^2} \Big) \\
+    & = -\int_{0}^{-\infty} \D{s} \exp{s}
+        & \text{Changing Coordinates: \( s=\frac{-r^2}{\sigma^2} \) and \( \D{s} = \frac{-2r}{\sigma^2} \D{r} \)} \\
+    & = -\exp{-\infty} + \exp0 \\
+    & = 1 \\
+    \big| \braket{\psi|\psi} \big| ^2 &= 1 \implies \braket{\psi|\psi} = 1
+\end{align*}
+
+
+\subsection*{Part 2}
+Evaluate the expectation values:
+\( \braket{\hat{x}} \),
+\( \braket{\hat{p}} \),
+\( \braket{\hat{x}^2} \), and
+\( \braket{\hat{p}^2} \)
+in terms of $\sigma$.
+
+\begin{align*}
+    \braket{\hat{x}}
+    &= \braket{\psi|\hat{x}|\psi} \\
+    &= \int \D{x}\D{y}\D{z}
+        \frac{1}{\pi^{1/4}\sigma^{1/2}} \exp{\frac{-y^2}{2\sigma^2}}
+        \braket{y|x}x\braket{x|z}
+        \frac{1}{\pi^{1/4}\sigma^{1/2}} \exp{\frac{-z^2}{2\sigma^2}} \\
+    &= \frac{1}{\sqrt{\pi}\sigma} \int \D{x}\D{y}\D{z}
+        \delta(y-x)\delta(x-z) x \, \exp{\frac{-y^2-z^2}{2\sigma^2}} \\
+    &= \frac{1}{\sqrt{\pi}\sigma} \int \D{x} x \, \exp{\frac{x^2}{\sigma^2}} \\
+    &= \frac{1}{\sqrt{\pi}\sigma} \Big[ 
+        \int_{-\infty}^{0} \D{x} x \, \exp{\frac{-x^2}{\sigma^2}} +
+        \int_{0}^{\infty} \D{x} x \, \exp{\frac{-x^2}{\sigma^2}} \Big] \\
+    &= \frac{1}{\sqrt{\pi}\sigma} \Big[ 
+        \int_{\infty}^{0} (-\D{x}) (-x) \, \exp{\frac{-(-x)^2}{\sigma^2}} +
+        \int_{0}^{\infty} \D{x} x \, \exp{\frac{-x^2}{\sigma^2}} \Big]
+        && \text{Change variables from $x$ to $-x$ in first integral} \\
+    &= \frac{1}{\sqrt{\pi}\sigma} \Big[ 
+        - \int^{\infty}_{0} x \, \exp{\frac{-x^2}{\sigma^2}} +
+        \int_{0}^{\infty} x \, \exp{\frac{-x^2}{\sigma^2}} \Big]
+        && \text{Swap integration limits} \\
+    &= 0
+\end{align*}
+
+\begin{align*}
+    \braket{\hat{x}^2}
+    &= \int \D{w}\D{x}\D{y}\D{z}
+        \frac{1}{\pi^{1/4}\sigma^{1/2}} \exp{\frac{-w^2}{2\sigma^2}}
+        \braket{w|x}x\braket{x|y}y\braket{y|z}
+        \frac{1}{\pi^{1/4}\sigma^{1/2}} \exp{\frac{-z^2}{2\sigma^2}} \\
+    &= \frac{1}{\sqrt{\pi}\sigma} \int \D{x}\D{y}\D{z}
+        \delta(w-x)\delta(x-y)\delta(y-z) xy \, \exp{\frac{-w^2-z^2}{2\sigma^2}} \\
+    &= \frac{1}{\sqrt{\pi}\sigma} \int_{-\infty}^{\infty} \D{x} x^2 \, \exp{\frac{-x^2}{\sigma^2}} \\
+    &= \frac{2}{\sqrt{\pi}\sigma} \int_{0}^{\infty} \D{x} x^2 \, \exp{\frac{-x^2}{\sigma^2}} 
+        && \text{Integrand is symmetric around 0} \\
+    &= \frac{\sigma^2}{\sqrt{\pi}} \int_{0}^{\infty} \Big( \D{x} \frac{2x}{\sigma^2} \big) \Big( \frac{x}{\sigma} \Big) \exp{\frac{-x^2}{\sigma^2}} \\
+    &= \frac{\sigma^2}{\sqrt{\pi}} \int_{0}^{\infty} \D{t} t^{1/2} \exp{-t}
+        && t = \frac{x^2}{\sigma^2} \text{ and } \D{t} = \frac{2x}{\sigma^2}\D{x}\\
+    &= \frac{\sigma^2}{\sqrt{\pi}} \Gamma(\frac{3}{2}) \\
+    &= \frac{\sigma^2}{\sqrt{\pi}} \frac{\sqrt{\pi}}{2} \\
+    &= \frac{\sigma^2}{2}
+\end{align*}
+
+\begin{align*}
+    \braket{\hat{p}}
+    &= \braket{\psi|\Poperator|\psi} \\
+    &= \frac{-i \hbar}{\sqrt{\pi}\sigma} \int \D{x} \exp{\frac{-x^2}{2\sigma^2}} \partial_x \exp{\frac{-x^2}{2\sigma^2}} \\
+    &= \frac{-i \hbar}{\sqrt{\pi}\sigma} \int \D{x} \frac{-2x}{\sigma^2} \exp{\frac{-x^2}{\sigma^2}} \\
+    &= \frac{2 i \hbar}{\sqrt{\pi}\sigma^3} \int \D{x} x \exp{\frac{-x^2}{\sigma^2}} \\
+    &= \frac{2 i \hbar}{\sqrt{\pi}\sigma^3} \bigg[ \int_{-\infty}^{0} \D{x} x \exp{\frac{-x^2}{\sigma^2}} + \int_{0}^{\infty} \D{x} x \exp{\frac{-x^2}{\sigma^2}} \bigg] \\
+    &= \frac{2 i \hbar}{\sqrt{\pi}\sigma^3} \bigg[ \int_{-\infty}^{0} \D{x} x \exp{\frac{-x^2}{\sigma^2}} + \int_{0}^{\infty} \D{x} x \exp{\frac{-x^2}{\sigma^2}} \bigg] \\
+    &= \frac{i \hbar}{\sqrt{\pi}\sigma} \bigg[ \int_{+\infty}^{0} \D{u} \exp{-u} + \int_{0}^{\infty} \D{u} \exp{-u} \bigg]
+        && u = \frac{x^2}{\sigma^2} \text{ and } \D{u} = \D{x}\frac{2x}{\sigma^2} \\
+    &= \frac{i \hbar}{\sqrt{\pi}\sigma} \bigg[ -\int^{\infty}_{0} \D{u} \exp{-u} + \int_{0}^{\infty} \D{u} \exp{-u} \bigg] \\
+    &= 0
+\end{align*}
+
+\begin{align*}
+    \braket{\hat{p}^2}
+    &= \braket{\psi|(\Poperator)(\Poperator)|\psi} \\
+    &= \frac{(-i \hbar)^2}{\sqrt{\pi}\sigma} \int \D{x} \exp{\frac{-x^2}{2\sigma^2}} \partial_x \partial_x \exp{\frac{-x^2}{2\sigma^2}} \\
+    &= \frac{-\hbar^2}{\sqrt{\pi}\sigma} \int \D{x} \exp{\frac{-x^2}{2\sigma^2}} \partial_x \Big( \frac{-x}{\sigma^2} \exp{\frac{-x^2}{2\sigma^2}} \Big) \\
+    &= \frac{\hbar^2}{\sqrt{\pi}\sigma^3} \int \D{x} \exp{\frac{-x^2}{2\sigma^2}} \partial_x \Big( x \exp{\frac{-x^2}{2\sigma^2}} \Big) \\
+    &= \frac{\hbar^2}{\sqrt{\pi}\sigma^3} \int \D{x} \exp{\frac{-x^2}{2\sigma^2}} \Big[ 1 - \frac{x^2}{\sigma^2} \Big] \exp{\frac{-x^2}{2\sigma^2}} \\
+    &= \frac{\hbar^2}{\sqrt{\pi}\sigma^3} \int \D{x} \Big[ 1 - \frac{x^2}{\sigma^2} \Big] \exp{\frac{-x^2}{\sigma^2}} \\
+    &= \frac{\hbar^2}{\sqrt{\pi}\sigma^3} \int \D{x} \exp{\frac{-x^2}{\sigma^2}} 
+        - \frac{\hbar^2}{\sqrt{\pi}\sigma^3} \int \D{x} \frac{x^2}{\sigma^2} \exp{\frac{-x^2}{2\sigma^2}} \\
+    &= \frac{\hbar^2}{\sqrt{\pi}\sigma^3} \Big[ \sqrt{\pi}\sigma \Big]
+        - \frac{\hbar^2}{\sqrt{\pi}\sigma^3} \int \D{x} \frac{x^2}{\sigma^2} \exp{\frac{-x^2}{2\sigma^2}}
+        && \text{Gaussian integral (same as part 1)} \\
+    &= \frac{\hbar^2}{\sigma^2}
+        - \frac{\hbar^2}{\sigma^4} \Big[ \frac{1}{\sqrt{\pi}\sigma} \int \D{x} x^2 \exp{\frac{-x^2}{2\sigma^2}} \Big] \\
+    &= \frac{\hbar^2}{\sigma^2}
+        - \frac{\hbar^2}{\sigma^4} \big[ i\frac{\sigma^2}{2} \big]
+        && \text{Same as \(\braket{\hat{x}^2}\)}\\
+    &= \frac{\hbar^2}{2\sigma^2}
+\end{align*}
+
+
+\subsection*{Part 3}
+Based on the result of Part 2, calculate (stdx) and (stdp) in terms of $\sigma$.
+Do they satisfy the uncertainty relation?
+
+\begin{align*}
+    (stdx) 
+    &= \sqrt{\braket{\hat{x}^2} - \braket{\hat{x}}^2} \\
+    &= \sqrt{\frac{\sigma^2}{2} - 0} \\
+    &= \frac{\sigma}{\sqrt{2}}
+\end{align*}
+
+\begin{align*}
+    (stdp) 
+    &= \sqrt{\braket{\hat{p}^2} - \braket{\hat{p}}^2} \\
+    &= \sqrt{\frac{\hbar^2}{2\sigma^2} - 0} \\
+    &= \frac{\hbar}{\sqrt{2}\sigma}
+\end{align*}
+
+\[ (stdx)(stdp)
+ = \frac{\sigma}{\sqrt{2}} \cdot \frac{\hbar}{\sqrt{2}\sigma}
+ = \frac{\hbar}{2} 
+ \ge \frac{\hbar}{2} \]
+
+ So, the uncertainty is satisfied (barely).
+
 
 \end{document}
