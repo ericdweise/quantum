@@ -8,6 +8,8 @@
 \usepackage{subcaption}
 \usepackage{braket}
 \usepackage{nopageno}
+\usepackage{dsfont}
+\usepackage{bbold}
 
 \newcommand{\assignment}[1]{
     \newpage
@@ -292,5 +294,61 @@ So
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%% HW 4 %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
+\assignment{4}
+\newcommand{\xopr}{ \, \hat{x} \,}
+\newcommand{\popr}{ \, \hat{p} \,}
+
+\subsection*{Part 1}
+Show that
+\( [ \xopr, \popr^n ] = i \hbar n \popr^{n-1} \)
+for
+\( n \in \mathds{N} \)
+
+Suppose that
+\( [\xopr,\popr^n] = i\hbar n \popr^{n-1} \).
+Then:
+\begin{align*}
+    [ \xopr, \popr^{n+1} ]
+    &= \xopr\popr^{n+1} - \popr^{n+1}\xopr \\
+    &= \xopr\popr^{n+1} - \popr\xopr\popr^n + \popr\xopr\popr^n - \popr^{n+1}\xopr \\
+    &= (\xopr\popr-\popr\xopr)\popr^n + \popr(\xopr\popr^n - \popr^n\xopr) \\
+    &= [\xopr,\popr]\popr^n + \popr[\xopr,\popr^n] \\
+    &= i\hbar \popr^n + \popr i\hbar n \popr^{n-1} \\
+    &= i\hbar \popr^n + i\hbar n \popr^n \\
+    &= i\hbar (n+1) \popr^n
+\end{align*}
+
+\subsection*{Part 2}
+Show that
+\( [\xopr, F(\popr)] = i\hbar\partial_{\popr} F(\popr) \)
+for generic function $F$.
+
+Use
+\[ F(\popr) = \sum_{n=0}^{\infty} \frac{f_n}{n!} \popr^n \]
+
+then:
+\begin{align*}
+    [\xopr, F(\popr)]
+    &= \sum_{n=0}^{\infty} \frac{f_n}{n!} [\xopr, \popr^n ] \\
+    &= [\xopr, \mathbb{1}]  + \sum_{n=1}^{\infty} \frac{f_n}{n!} [\xopr, \popr^n ] \\
+    &= \sum_{n=1}^{\infty} \frac{f_n}{n!} [\xopr, \popr^n ] \\
+    &= \sum_{n=1}^{\infty} \frac{f_n}{n!} i\hbar n \popr^{n-1} \\
+    &= i\hbar \sum_{n=1}^{\infty} \frac{f_n}{(n-1)!} i\hbar \popr^{n-1} \\
+    &= i\hbar \sum_{n=0}^{\infty} \frac{f_{n+1}}{n!} \popr^{n} \\
+    &= i\hbar \partial_{\popr} F(\popr)
+\end{align*}
+
+\subsection*{Part 3}
+Show that
+\( [\xopr, \hat{T}(a) ] = -a \hat{T}(a) \).
+
+\begin{align*}
+    [\xopr, \hat{T}(a) ]
+    &= i\hbar \partial_{\popr} \exp{i\popr a / \hbar} \\
+    &= i\hbar \frac{i a}{\hbar} \exp{i\popr a / \hbar} \\
+    &= -a \exp{i\popr a / \hbar} \\
+    &= -a \hat{T}(a)
+\end{align*}
+
 
 \end{document}
