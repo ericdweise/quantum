@@ -351,4 +351,23 @@ Show that
 \end{align*}
 
 
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% HW 5 %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\assignment{5}
+Show that
+\( \ket{N} = \frac{1}{\sqrt{2\pi}} \int \D{\theta} \exp{i N \theta} \ket{\theta} \)
+is normalized
+
+\begin{align*}
+    \braket{N|N}
+    &= \frac{1}{2\pi} \int \D{\theta_1}\D{\theta_2} \exp{-i N \theta_1} \exp{i N \theta_2} \braket{\theta_1|\theta_2} \\
+    &= \frac{1}{2\pi} \int \D{\theta} \exp{i N (\theta_2 - \theta_1)} \delta(\theta_2 - \theta_1) \\
+    &= \frac{1}{2\pi} \int \D{\theta_1} \exp{0} \\
+    &= \frac{1}{2\pi} \int_{0}^{2\pi} \D{\theta_1} \\
+    &= \frac{1}{2\pi} 2\pi \\
+    &= 1
+\end{align*}
+
+
 \end{document}
