@@ -370,4 +370,45 @@ is normalized
 \end{align*}
 
 
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% HW 6 %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\assignment{6}
+\subsection*{part 1}
+From equation 149:
+\[ \ket{\theta} = \frac{1}{\sqrt{2\pi}} \sum \exp{iN\theta} \ket{N} \]
+\[ \ket{-\theta} = \frac{1}{\sqrt{2\pi}} \sum \exp{-iN\theta} \ket{N} \]
+\[ \bra{\theta} = \frac{1}{\sqrt{2\pi}} \sum \exp{-iN\theta} \bra{N} \]
+Then
+\begin{align*}
+    \int \ket{-\theta}\bra{\theta}
+    &= \frac{1}{2\pi} \int \D{\theta} \Big( \sum_M\exp{iM\theta}\ket{M} \Big) \Big( \sum_N \exp{iN\theta}\bra{N} \Big) \\
+    &= \frac{1}{2\pi} \int \D{\theta} \sum_{M,N}\exp{i(M+N)\theta}\ket{M}\bra{N} \\
+    &= \frac{1}{2\pi} \Big( \int \D{\theta} \sum_{M=-N}\ket{M}\bra{N} + \int \D{\theta} \sum_{M\neq-N} \exp{i(M+N)\theta}\ket{N}\bra{M} \Big) \\
+    &= \frac{1}{2\pi} \Big( 2\pi \sum_{n\in\mathbb{Z}} \ket{-N}\bra{N} + \sum_{M\neq-N} \Big[ \exp{i(M+N)\theta}\Big]_{\theta=0}^{2\pi} \ket{N}\bra{M}  \Big) \\
+    &= \sum_{n\in\mathbb{Z}} \ket{-N}\bra{N} + 0
+\end{align*}
+
+\subsection*{part 2}
+Show that $\hat{P}$ commutes with $\hat{H}$.
+
+\begin{align*}
+    \hat{H}\hat{P}
+    &= \frac{1}{2}\hat{N}^2\sum\ket{-N}\bra{N} \\
+    &= \frac{1}{2} \sum \hat{N}^2\ket{-N}\bra{N} \\
+    &= \frac{1}{2} \sum (-N)^2\ket{-N}\bra{N} \\
+    &= \frac{1}{2} \sum N^2\ket{-N}\bra{N}
+\end{align*}
+and
+\begin{align*}
+    \hat{P}\hat{H}
+    &= \frac{1}{2} \sum \ket{-N}\bra{N} \hat{N}^2 \\
+    &= \frac{1}{2} \sum \ket{-N}\bra{N} (N)^2 \\
+    &= \hat{H}\hat{P}
+\end{align*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% HW 7 %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
