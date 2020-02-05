@@ -233,7 +233,7 @@ So, the uncertainty is satisfied (barely).
 \assignment{3}
 \renewcommand{\exp}[1]{ \, e^{#1} \, }
 \newcommand{\aop}[0]{ \hat{a} \, }
-\newcommand{\adagger}[0]{ \hat{a}^{\dagger} \, }
+\newcommand{\bop}[0]{ \hat{b} \, }
 
 Consider
 \( \hat{H} = \frac{1}{2}\big(\hat{p}^2 + \hat{x}^2\big) \),
@@ -242,13 +242,13 @@ derive the Heisenberg equation for operator
 
  \subsection*{Operator Relationships}
  Define 
- \( \adagger = \frac{1}{\sqrt{2}} \big( \hat{x} - i \hat{p} \big)\).
+ \( \bop = \frac{1}{\sqrt{2}} \big( \hat{x} - i \hat{p} \big)\).
  Then the following are true:
 
  \begin{tabular}{cc}
      \parbox[b]{0.45\textwidth}{
          \begin{align*}
-             \aop\adagger
+             \aop\bop
              &= \frac{1}{2} \big( \hat{x}^2 - i \hat{x}\hat{p} + i \hat{p}\hat{x} + \hat{p}^2 \big) \\
              &= \frac{1}{2} \big( \hat{x}^2  + \hat{p}^2 -i [\hat{x},\hat{p}] \big) \\
              &= \frac{1}{2} \big( \hat{x}^2  + \hat{p}^2 + \hpbar \big) \\
@@ -258,7 +258,7 @@ derive the Heisenberg equation for operator
     &
     \parbox[b]{0.45\textwidth}{ 
          \begin{align*}
-             \adagger\aop
+             \bop\aop
              &= \frac{1}{2} \big( \hat{x}^2 - i \hat{p}\hat{x} + i \hat{x}\hat{p} + \hat{p}^2 \big) \\
              &= \frac{1}{2} \big( \hat{x}^2  + \hat{p}^2 +i [\hat{x},\hat{p}] \big) \\
              &= \frac{1}{2} \big( \hat{x}^2  + \hat{p}^2 - \hpbar \big) \\
@@ -269,8 +269,8 @@ derive the Heisenberg equation for operator
 
 So
 \( \hat{H}
-    = \aop\adagger - \frac{\hbar}{2}
-    = \adagger\aop + \frac{\hbar}{2}
+    = \aop\bop - \frac{\hbar}{2}
+    = \bop\aop + \frac{\hbar}{2}
 \)
 
 \subsection*{Deriving  Heisenberg's Equation}
@@ -284,8 +284,8 @@ So
         \exp{i\hat{H}t/\hbar} \frac{\partial \aop}{\partial t} \exp{-i\hat{H}t/\hbar} \\
     &= \frac{i}{\hbar} \exp{i\hat{H}t/\hbar} \Big( \hat{H}\aop - \aop\hat{H} \Big) \exp{-i\hat{H}t/\hbar}
         && \text{since $\hat{x}$ and $\hat{p}$ are time independent.}\\
-    &= \frac{i}{\hbar} \exp{i\hat{H}t/\hbar} \Big((\aop\adagger - \frac{\hbar}{2}) \aop - \aop(\adagger\aop + \frac{\hbar}{2}) \Big) \exp{-i\hat{H}t/\hbar} \\
-    &= \frac{i}{\hbar} \exp{i\hat{H}t/\hbar} \Big(\aop\adagger\aop - \aop\adagger\aop - \hbar\aop \Big) \exp{-i\hat{H}t/\hbar} \\
+    &= \frac{i}{\hbar} \exp{i\hat{H}t/\hbar} \Big((\aop\bop - \frac{\hbar}{2}) \aop - \aop(\bop\aop + \frac{\hbar}{2}) \Big) \exp{-i\hat{H}t/\hbar} \\
+    &= \frac{i}{\hbar} \exp{i\hat{H}t/\hbar} \Big(\aop\bop\aop - \aop\bop\aop - \hbar\aop \Big) \exp{-i\hat{H}t/\hbar} \\
     &= -i \, \exp{i\hat{H}t/\hbar} \big( \aop \big) \exp{-i\hat{H}t/\hbar} \\
     &= -i \, \aop(t)
 \end{align*}
