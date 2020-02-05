@@ -88,27 +88,27 @@ Show that the (negative) temporal derivative of the action, \( -\partial_{t_1} S
 Consider state
 \( \ket{\psi} = \int \D{x} \, \psi(x) \ket{x} \)
 described by the following wave function with a tunable parameter $\sigma$:
-\[ \psi(x) = \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp\big( -\frac{x^2}{2\sigma^2} \big) \]
+\[ \psi(x) = \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp{ -\frac{x^2}{2\sigma^2} } \]
 
 \subsection*{Part 1}
 Check that the state is normalized.
 
 \begin{align*}
     \braket{\psi|\psi}
-    & = \int_{-\infty}^{\infty} \D{x} \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp\Big( \frac{-x^2}{2\sigma^2} \Big)
-        \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp\Big( \frac{-x^2}{2\sigma^2} \Big) \\
-    & = \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{x} \exp\Big( \frac{-x^2}{\sigma^2} \Big) \\
+    & = \int_{-\infty}^{\infty} \D{x} \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp{ \frac{-x^2}{2\sigma^2} }
+        \frac{1}{\pi^{1/4} \sigma^{1/2}} \exp{ \frac{-x^2}{2\sigma^2} } \\
+    & = \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{x} \exp{ \frac{-x^2}{\sigma^2} } \\
     \big| \braket{\psi|\psi} \big| ^2
-    & = \bigg( \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{x} \exp\Big( \frac{-x^2}{\sigma^2} \Big) \bigg)
-        \bigg( \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{y} \exp\Big( \frac{-y^2}{\sigma^2} \Big) \bigg) \\
-    & = \frac{1}{\pi\sigma^2} \iint_{-\infty}^{\infty} \D{x} \D{y} \exp\big( -\frac{x^2 + y^2}{\sigma^2} \big) \bigg) \\
-    & = \frac{1}{\pi\sigma^2} \int_{0}^{2\pi}\D{\theta} \int_{0}^{\infty} \D{r} r \exp\Big( \frac{-r^2}{\sigma^2} \Big)
+    & = \bigg( \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{x} \exp{ \frac{-x^2}{\sigma^2} } \bigg)
+        \bigg( \frac{1}{\sqrt{\pi} \sigma} \int_{-\infty}^{\infty} \D{y} \exp{ \frac{-y^2}{\sigma^2} } \bigg) \\
+    & = \frac{1}{\pi\sigma^2} \iint_{-\infty}^{\infty} \D{x} \D{y} \exp{ -\frac{x^2 + y^2}{\sigma^2} } \bigg) \\
+    & = \frac{1}{\pi\sigma^2} \int_{0}^{2\pi}\D{\theta} \int_{0}^{\infty} \D{r} r \exp{ \frac{-r^2}{\sigma^2} }
         & \text{Change of to polar coordinates}\\
-    & = \frac{2\pi}{\pi\sigma^2} \int_{0}^{\infty} \D{r} r \exp\Big( \frac{-r^2}{\sigma^2} \Big) \\
-    & = \int_{0}^{\infty} \D{r} \frac{2r}{\sigma^2} \exp\Big( \frac{-r^2}{\sigma^2} \Big) \\
+    & = \frac{2\pi}{\pi\sigma^2} \int_{0}^{\infty} \D{r} r \exp{ \frac{-r^2}{\sigma^2} } \\
+    & = \int_{0}^{\infty} \D{r} \frac{2r}{\sigma^2} \exp{ \frac{-r^2}{\sigma^2} } \\
     & = -\int_{0}^{-\infty} \D{s} \exp{s}
         & \text{Changing Coordinates: \( s=\frac{-r^2}{\sigma^2} \) and \( \D{s} = \frac{-2r}{\sigma^2} \D{r} \)} \\
-    & = -\exp{-\infty} + \exp0 \\
+    & = -\exp{-\infty} + \exp{0} \\
     & = 1 \\
     \big| \braket{\psi|\psi} \big| ^2 &= 1 \implies \braket{\psi|\psi} = 1
 \end{align*}
