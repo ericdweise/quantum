@@ -411,4 +411,57 @@ and
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%% HW 7 %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
+\assignment{7}
+Find the expectation value of the raising operator as a function of $t$.
+
+\begin{align*}
+    \ket{\psi(0)}
+    &= \frac{1}{\sqrt{4\pi}} \int \D{\theta} (1 + \exp{i\theta}) \ket{\theta} \\
+    &= \frac{1}{\sqrt{4\pi}} \bigg( \int \D{\theta} \ket{\theta} + \int \D{\theta} \exp{i\theta} \ket{\theta} \bigg)
+\end{align*}
+
+Converting this to the $\ket{N}$ basis:
+\begin{align*}
+   \int \D{\theta} \exp{i\theta} \ket{\theta}
+    &= \int \D{\theta} \exp{i1\theta} \ket{\theta} \\
+    &=  \sqrt{2\pi}\ket{1} \\
+\end{align*}
+\begin{align*}
+    \int \D{\theta} \ket{\theta}
+    &= \int \D{\theta} \bigg( \frac{1}{\sqrt{2\pi}} \sum \exp{-iN\theta}\ket{N} \bigg) \\
+    &= \frac{1}{\sqrt{2\pi}} \bigg[ \int \D{\theta} \ket{0} + \int \D{\theta} \sum_{N\neq0} \exp{-iN\theta}\ket{N} \bigg] \\
+    &= \frac{1}{\sqrt{2\pi}} \bigg[ 2\pi \ket{0} + 0 \bigg]
+        && \text{since, for nonzero $N$, $\int \D{\theta}\exp{-iN\theta} = 0$} \\
+    &= \sqrt{2\pi}\ket{0}
+\end{align*}
+
+Then, in the momentum basis $\ket{N}$ the original wave function has the form:
+\[ \ket{\psi(0)} = \frac{\sqrt{2\pi}}{\sqrt{4\pi}} ( \ket{0} + \ket{1} ) = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1} ) \]
+
+Now, applying the time evolution to find the wave function as a function of time:
+\begin{align*}
+    \ket{\psi(t)}
+    &= \exp{-i\hat{H}t}\ket{\psi(0)} \\
+    &= \frac{1}{\sqrt{2}} \exp{-i\hat{N}^2t/2}\big[ \ket{0} + \ket{1} \big] \\
+    &= \frac{1}{\sqrt{2}} \big[ \exp{-i(0)^2t/2} \ket{0} + \exp{-i(1)^2t/2} \ket{1} \big] \\
+    &= \frac{1}{\sqrt{2}} \big[ \ket{0} + \exp{-it/2} \ket{1} \big]
+\end{align*}
+
+Now, finding the expectation value of the raising operator as a function of time:
+\begin{align*}
+    \bra{\psi(t)} \exp{i\hat{\theta}} \ket{\psi(t)}
+    &= \frac{1}{2} \big[ \bra{0} + \exp{it/2} \bra{1} \big]
+        \exp{i\hat{\theta}}
+        \big[ \ket{0} + \exp{-it/2} \ket{1} \big] \\
+    &= \frac{1}{2} \big[ \bra{0} + \exp{it/2} \bra{1} \big]
+        \big[ \ket{1} + \exp{-it/2} \ket{2} \big] \\
+    &= \frac{1}{2} \big[
+        \braket{0|1}
+        + \exp{-it/2} \braket{0|2}
+        + \exp{it/2} \braket{1|1}
+        + \braket{1|2}
+        \big] \\
+    &= \frac{1}{2} \exp{it/2}
+\end{align*}
+
 \end{document}
