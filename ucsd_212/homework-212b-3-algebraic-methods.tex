@@ -1,0 +1,111 @@
+\documentclass{article}
+
+% PACKAGES
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{braket}
+\usepackage{nopageno}
+\usepackage{dsfont}
+\usepackage{bbold}
+
+\newcommand{\assignment}[1]{
+    \newpage
+    \begin{tabular}{p{0.65\linewidth}p{0.25\linewidth}}
+        {\bf\LARGE Physics 212B - Part 3 - Homework #1 }
+        &
+        \parbox[b]{0.24\textwidth}{
+            \hfill Eric Weise
+
+            \hfill A09642187
+            }
+    \end{tabular}
+    \vspace{12pt}
+    \newline
+}
+\newcommand{\Poperator}[0]{-i \hbar \partial_x}
+\renewcommand{\exp}[1]{\,\text{exp} \big\{ #1 \big\} }
+
+\renewcommand{\RAISE}[0]{\hat{a}^{\dagger}}
+\renewcommand{\LOWER}[0]{\hat{a}}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%
+%%% HOMEWORK 2 ###
+%%%%%%%%%%%%%%%%%%
+\assignment{2}
+Find \( \bra{0} x^4 \ket{0} \)
+\begin{align*}
+    x = \frac{1}{\sqrt{2}} \big( 
+        &\LOWER + \RAISE
+        \big) \\
+    x^2 = \frac{1}{2} \big( 
+        &\LOWER\LOWER + \LOWER\RAISE + \RAISE\LOWER + \RAISE\RAISE
+        \big) \\
+    x^3 = \frac{1}{2\sqrt{2}} \big( 
+        & \LOWER\LOWER\LOWER + \LOWER\RAISE\LOWER + \RAISE\LOWER\LOWER + \RAISE\RAISE\LOWER
+        + \LOWER\LOWER\RAISE + \LOWER\RAISE\RAISE + \RAISE\LOWER\RAISE + \RAISE\RAISE\RAISE
+        \big) \\
+    x^4 = \frac{1}{4} \big( 
+        & \LOWER\LOWER\LOWER\LOWER + \LOWER\RAISE\LOWER\LOWER + \RAISE\LOWER\LOWER\LOWER + \underline{\RAISE\RAISE\LOWER\LOWER}
+        + \LOWER\LOWER\RAISE\LOWER + \underline{\LOWER\RAISE\RAISE\LOWER} + \underline{\RAISE\LOWER\RAISE\LOWER} + \RAISE\RAISE\RAISE\LOWER \\
+        &+ \LOWER\LOWER\LOWER\RAISE + \underline{\LOWER\RAISE\LOWER\RAISE} + \underline{\RAISE\LOWER\LOWER\RAISE} + \RAISE\RAISE\LOWER\RAISE
+        + \underline{\LOWER\LOWER\RAISE\RAISE} + \LOWER\RAISE\RAISE\RAISE + \RAISE\LOWER\RAISE\RAISE + \RAISE\RAISE\RAISE\RAISE
+        \big)
+\end{align*}
+Only the underlined terms above will give non-zero inner products since they have an equal number of raising and lowering operators.
+All other terms will have inner products $\braket{m|n}, m\neq n$.
+The underlined terms are calculated for arbitrary $n$.
+\begin{align*}
+    \bra{n} \RAISE\RAISE\LOWER\LOWER \ket{n}
+        &= \sqrt{n} \bra{n} \RAISE\RAISE\LOWER \ket{n-1}
+         = \sqrt{n(n-1)} \bra{n} \RAISE\RAISE \ket{n-2}
+         = \sqrt{n(n-1)^2} \bra{n} \RAISE \ket{n}
+         = \sqrt{n^2(n-1)^2} \braket{n|n} \\
+        &= n(n-1) \\
+    \bra{n} \LOWER\RAISE\RAISE\LOWER \ket{n}
+        &= \sqrt{n} \bra{n} \LOWER\RAISE\RAISE \ket{n-1}
+         = \sqrt{n^2} \bra{n} \LOWER\RAISE \ket{n}
+         = \sqrt{n^2(n+1)} \bra{n} \LOWER \ket{n+1}
+         = \sqrt{n^2(n+1)^2} \braket{n|n} \\
+        &= n(n+1) \\
+    \bra{n} \RAISE\LOWER\RAISE\LOWER \ket{n}
+        &= \sqrt{n} \bra{n} \RAISE\LOWER\RAISE \ket{n-1}
+         = \sqrt{n^2} \bra{n} \RAISE\LOWER \ket{n}
+         = \sqrt{n^3} \bra{n} \RAISE \ket{n-1}
+         = \sqrt{n^4} \braket{n|n} \\
+        &= n^2 \\
+    \bra{n} \LOWER\RAISE\LOWER\RAISE \ket{n}
+        &= \sqrt{n+1} \bra{n} \LOWER\RAISE\LOWER \ket{n+1}
+         = \sqrt{(n+1)^2} \bra{n} \LOWER\RAISE \ket{n}
+         = \sqrt{(n+1)^3} \bra{n} \LOWER \ket{n+1}
+         = \sqrt{(n+1)^4} \braket{n|n} \\
+        &= (n+1)^2 \\
+    \bra{n} \RAISE\LOWER\LOWER\RAISE \ket{n}
+        &= \sqrt{n+1} \bra{n} \RAISE\LOWER\LOWER \ket{n+1}
+         = (n+1)^2 \bra{n} \RAISE\LOWER \ket{n}
+         = (n+1)\sqrt{n} \bra{n} \RAISE \ket{n-1}
+         = n(n+1) \braket{n|n} \\
+        &= n(n+1) \\
+    \bra{n} \LOWER\LOWER\RAISE\RAISE \ket{n}
+        &= \sqrt{n+1} \bra{n} \LOWER\LOWER\RAISE \ket{n+1}
+         = \sqrt{(n+1)(n+2)} \bra{n} \LOWER\LOWER \ket{n+2}
+         = (n+2)\sqrt{n+1} \bra{n} \LOWER \ket{n+1}
+         = (n+1)(n+2) \braket{n|n} \\
+        &= (n+1)(n+2) \\
+\end{align*}
+Plugging in $n=0$ gives:
+\begin{align*}
+    \bra{0} x^4 \ket{0}
+    &= 0(0-1) + 0(0+1) + 0^2 + (0+1)^2 + 0(0+1) + (0+1)(0+2) \\
+    &= 1 + 2 \\
+    &= 3
+\end{align*}
+
+
+
+\end{document}
