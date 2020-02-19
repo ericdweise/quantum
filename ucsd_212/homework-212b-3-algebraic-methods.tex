@@ -35,6 +35,43 @@
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%
+%%% HOMEWORK 1 ###
+%%%%%%%%%%%%%%%%%%
+\assignment{1}
+Want to show 
+\( \LOWER(\RAISE)^n = (\RAISE)^n\LOWER + n(\RAISE)^{n-1} \)
+for $n=0,1,2,...$
+
+\subsection*{Base Case, n=0}
+\begin{align*}
+    \LOWER(\RAISE)^0
+    &= \LOWER \mathbb{1} \\
+    &= \mathbb{1} \LOWER \\
+    &= (\RAISE)^0 \LOWER + 0 \cdot (\RAISE)^{0-1}
+\end{align*}
+
+\subsection*{Induction}
+Suppose that
+\( \LOWER(\RAISE)^n = (\RAISE)^n\LOWER + n(\RAISE)^{n-1} \)
+holds for all integers $0,1,\ldots,n$.
+Need to show
+\[ \LOWER(\RAISE)^{n+1} = (\RAISE)^{n+1}\LOWER + (n+1)(\RAISE)^n \]
+
+\begin{align*}
+    \LOWER(\RAISE)^{n+1}
+    &= \big[ \LOWER(\RAISE)^n \big] \RAISE \\
+    &= \big[ (\RAISE)^n\LOWER + n(\RAISE)^{n-1} \big] \RAISE
+        && \text{by assumption}\\
+    &= (\RAISE)^n \LOWER \RAISE + n (\RAISE)^n \\
+    &= (\RAISE)^n \big[ (\RAISE)\LOWER + \mathbb{1} \big] + n(\RAISE)^n
+        && \text{since }[\LOWER,\RAISE] = \mathbb{1} \\
+    &= (\RAISE)^{n+1} + (\RAISE)^n + n(\RAISE)^n \\
+    &= (\RAISE)^{n+1} + (n+1)(\RAISE)^n \\
+\end{align*}
+
+
+
+%%%%%%%%%%%%%%%%%%
 %%% HOMEWORK 2 ###
 %%%%%%%%%%%%%%%%%%
 \assignment{2}
