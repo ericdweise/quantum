@@ -31,6 +31,7 @@
 \renewcommand{\RAISE}[0]{\hat{a}^{\dagger}}
 \renewcommand{\LOWER}[0]{\hat{a}}
 
+\def\uunderline#1{\underline{\underline{#1}}}
 
 \begin{document}
 
@@ -67,6 +68,7 @@ Need to show
         && \text{since }[\LOWER,\RAISE] = \mathbb{1} \\
     &= (\RAISE)^{n+1} + (\RAISE)^n + n(\RAISE)^n \\
     &= (\RAISE)^{n+1} + (n+1)(\RAISE)^n \\
+    & \square
 \end{align*}
 
 
@@ -143,6 +145,59 @@ Plugging in $n=0$ gives:
     &= 3
 \end{align*}
 
+
+%%%%%%%%%%%%%%%%%%
+%%% HOMEWORK 3 %%%
+%%%%%%%%%%%%%%%%%%
+\assignment{3}
+Prove
+\( [L_a, L_b] = i \epsilon_{abc} L_c \)
+using
+\( L_a = -i \epsilon_{abc}\RAISE_b \LOWER_c \)
+and the commutation relations for $\LOWER_a$ and $\RAISE_a$.
+
+I'll start by expanding the RHS of the equation:
+\begin{align*}
+    i \epsilon_{abc} L_c
+    &= i \epsilon_{abc} \big( -i \epsilon_{cde} \RAISE_d \LOWER_e \big) \\
+    &= -(i)^2 \epsilon_{abc} \epsilon_{cde} \RAISE_d \LOWER_e \\
+    &= \epsilon_{cab} \epsilon_{cde} \RAISE_d \LOWER_e \\
+    &= \big( \delta_{ad} \delta_{be} - \delta_{ae} \delta_{bd} \big) \RAISE_d \LOWER_e \\
+    &= \RAISE_a \LOWER_b - \LOWER_a \RAISE_b
+\end{align*}
+
+Finding the commutator piece by piece:
+\begin{align*}
+    \L_a \L_b
+    &= \big[ -i \epsilon_{abc}\RAISE_b\LOWER_c \big] \big[ -i \epsilon_{bca} \RAISE_c\LOWER_a \big] \\
+    &= (i^2) \big[ \RAISE_b\LOWER_c - \LOWER_b\RAISE_c \big] \big[ \LOWER_a\RAISE_c - \RAISE_a\LOWER_c \big] \\
+    &= \LOWER_a\LOWER_b\RAISE_c\RAISE_c - \RAISE_a\LOWER_b\RAISE_c\LOWER_c
+        - \LOWER_a\RAISE_b\LOWER_c\RAISE_c + \RAISE_a\RAISE_b\LOWER_c\LOWER_c \\
+        \text{  } \\
+    \L_b \L_a
+    &= \big[ -i \epsilon_{bca} \RAISE_c\LOWER_a \big] \big[ -i \epsilon_{abc}\RAISE_b\LOWER_c \big] \\
+    &= (i^2) \big[ \LOWER_a\RAISE_c - \RAISE_a\LOWER_c \big] \big[ \RAISE_b\LOWER_c - \LOWER_b\RAISE_c \big] \\
+    &= \RAISE_a\RAISE_b\LOWER_c\LOWER_c - \RAISE_a\LOWER_b\LOWER_c\RAISE_c -
+        \LOWER_a\RAISE_b\RAISE_c\LOWER_c + \LOWER_a\LOWER_b\RAISE_c\RAISE_c \\
+    \text{ } \\
+    [L_a, L_b]
+    =& \L_a \L_b - \L_b \L_a \\
+    =& \underline{\LOWER_a\LOWER_b\RAISE_c\RAISE_c} - \RAISE_a\LOWER_b\RAISE_c\LOWER_c
+        - \LOWER_a\RAISE_b\LOWER_c\RAISE_c + \uunderline{\RAISE_a\RAISE_b\LOWER_c\LOWER_c} \\
+        &- \uunderline{\RAISE_a\RAISE_b\LOWER_c\LOWER_c} + \RAISE_a\LOWER_b\LOWER_c\RAISE_c
+        + \LOWER_a\RAISE_b\RAISE_c\LOWER_c - \underline{\LOWER_a\LOWER_b\RAISE_c\RAISE_c} \\
+    =& \RAISE_a\LOWER_b\LOWER_c\RAISE_c + \LOWER_a\RAISE_b\RAISE_c\LOWER_c
+        - \RAISE_a\LOWER_b\RAISE_c\LOWER_c - \LOWER_a\RAISE_b\LOWER_c\RAISE_c \\
+    =& \big( \LOWER_a\RAISE_b - \RAISE_a\LOWER_b \big) \RAISE_c\LOWER_c
+        + \big( \RAISE_a\LOWER_b - \LOWER_a\RAISE_b \big) \LOWER_c\RAISE_c \\
+    =& \big( \LOWER_a\RAISE_b - \RAISE_a\LOWER_b \big) \RAISE_c\LOWER_c
+        + \big( \RAISE_a\LOWER_b - \LOWER_a\RAISE_b \big) \big( \RAISE_c\LOWER_c + \mathbb{1} \big)
+        && \text{Using } [\LOWER,\RAISE] = \mathbb{1} \\
+    =& \Big[ \LOWER_a\RAISE_b - \RAISE_a\LOWER_b + \RAISE_a\LOWER_b - \LOWER_a\RAISE_b \Big] \RAISE_c\LOWER_c
+        + \big( \RAISE_a\LOWER_b - \LOWER_a\RAISE_b \big) \mathbb{1} \\
+    =& \RAISE_a\LOWER_b - \LOWER_a\RAISE_b
+\end{align*}
+Which matches the expansion of the R.H.S of the equation.
 
 
 \end{document}
