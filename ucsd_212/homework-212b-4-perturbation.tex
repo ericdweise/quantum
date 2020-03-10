@@ -1,0 +1,126 @@
+\documentclass{article}
+
+% PACKAGES
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{braket}
+\usepackage{nopageno}
+\usepackage{dsfont}
+\usepackage{bbold}
+
+\newcommand{\assignment}[1]{
+    \newpage
+    \begin{tabular}{p{0.65\linewidth}p{0.25\linewidth}}
+        {\bf\LARGE Physics 212B - Part 4 - Homework #1 }
+        &
+        \parbox[b]{0.24\textwidth}{
+            \hfill Eric Weise
+
+            \hfill A09642187
+            }
+    \end{tabular}
+    \vspace{12pt}
+    \newline
+}
+\newcommand{\D}[1]{{d#1 \,}}
+\newcommand{\Poperator}[0]{-i \hbar \partial_x}
+\renewcommand{\exp}[1]{\,e^{#1} }
+
+\renewcommand{\RAISE}[0]{\hat{a}^{\dagger}}
+\renewcommand{\LOWER}[0]{\hat{a}}
+
+\def\uunderline#1{\underline{\underline{#1}}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%
+%%% HOMEWORK 2 ###
+%%%%%%%%%%%%%%%%%%
+\assignment{2}
+The unperturbed system is the quantum rotor, which was solved previously.
+The system is described by::
+\begin{align*}
+    \hat{H}
+        &= \frac{1}{2} \hat{N}^2
+         = -\frac{1}{2} \partial_{\theta}^2
+        && \text{Hamiltonian, where } \hat{N} = -i \partial_{\theta} \\
+    \ket{N} 
+        &= \frac{1}{\sqrt{2\pi}}\int \D{\theta} \exp{iN\theta} \ket{\theta}
+        && \text{Eigenvectors} \\
+    E_N 
+        &= \frac{1}{2}N^2
+        && \text{Eigenvalues}
+\end{align*}
+
+
+\subsection*{Part i}
+Calculate the eigenenergies to the 2nd ordering
+
+{\bf Zeroth order term}\\
+\[ E_N = \frac{1}{2}N^2 \]
+
+{\bf First order term}
+\begin{align*}
+    \partial_g E_N
+    &= V_{NN} \\
+    &= \bra{\theta} \partial_g H \ket{\theta} \\
+    &= \int \D{\theta} \exp{-iN\theta} cos(\theta) \exp{iN\theta} \\
+    &= \int_0^{2\pi} \D{\theta} cos(\theta) \\
+    &= 0
+\end{align*}
+
+{\bf Second order term}
+\begin{align*}
+    V_{MN}
+    &= \bra{M} cos(\theta) \ket{N} \\
+    &= \int_0^{2\pi} \exp{-i M \theta} cos(\theta) \exp{i N \theta} \\
+    &= \int_0^{2\pi} \exp{i (N-M) \theta} cos(\theta) \\
+    &= \int_0^{2\pi} \exp{i (N-M) \theta} \frac{1}{2} \big( \exp{i \theta} + \exp{-i \theta} \big) \\
+    &= \frac{1}{2} \Big[ \int_0^{2\pi} \D{\theta} \exp{i (N-M+1) \theta} + \int_0^{2\pi} \D{\theta} \exp{-i (N-M-1) \theta} \Big] \\
+\end{align*}
+
+For $n\neq0$ we have that \( \int \exp{i n \theta} = 0\). Then, 
+\[
+    V_{MN} = 
+    \begin{cases}
+        \pi & M=N+1\\
+        \pi & M=N-1\\
+        0 & \text{otherwise}
+    \end{case}
+\]
+
+\begin{align*}
+    \partial_g^2 E_N
+    &= \sum_{M \neq N}\frac{|V_{MN}|^2}{E_N - E_M} \\
+    &= \bigg[ \frac{\pi^2}{\frac{1}{2}N^2 - \frac{1}{2}(N+1)^2} + \frac{\pi^2}{\frac{1}{2}N^2 - \frac{1}{2}(N-1)^2} \bigg] \\
+    &= \bigg[ \frac{2 \pi^2}{N^2 - N^2 - 2N -1} + \frac{2 \pi^2}{N^2 - N^2 + 2N -1} \bigg] \\
+    &= 2\pi^2 \bigg[ \frac{-1}{2N+1} + \frac{1}{2N-1} \bigg] \\
+    &= 2\pi^2 \bigg[ \frac{1-2N + 2N+1}{4N^2-1} \bigg] \\
+    &= \frac{4 \pi^2}{4N^2-1} \\
+\end{align*}
+
+{\bf Corrected energy to second order}
+\[ E_N = \frac{1}{2}N^2 + g^2 \frac{4 \pi^2}{4N^2-1} + \ldots \]
+
+
+
+\subsection*{Part ii}
+Calculate the eigenstates to the first order in g.
+
+\begin{align*}
+    \sum_{M \neq N} \ket{M} \frac{V_{MN}}{E_N - E_M}
+    &= \frac{\pi}{\frac{1}{2}N^2 - \frac{1}{2}(N-1)^2} \ket{N-1} + \frac{\pi}{\frac{1}{2}N^2 - \frac{1}{2}(N+1)^2} \ket{N+1}
+        && \text{Using $V_{MN}$ from Part i} \\
+    &= \frac{2\pi}{2N-1} \ket{N-1} - \frac{2\pi}{2N+1} \ket{N+1}
+\end{align*}
+
+Then, the corrected state is:
+\begin{align*}
+    \ket{N(g)}
+    &= \ket{N} + g\sum_{M \new N} \ket{M} \frac{V_{MN}}{E_N - E_M} \\
+    &= \ket{N} + g\bigg[ \frac{2\pi}{2N-1} \ket{N-1} - \frac{2\pi}{2N+1} \ket{N+1} \bigg]
+\end{align*}
+\end{document}
